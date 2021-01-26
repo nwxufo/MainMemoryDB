@@ -39,7 +39,7 @@ CLI_DLL = cli.dll
 
 EXES = subsql.exe cgistub.exe forcerecovery.exe
 
-EXAMPLES = guess.exe guess2.exe guess_std.exe testdb.exe testleak.exe testfrag.exe testjoin.exe testddl.exe testddl_e.exe testperf.exe testpar.exe testindex.exe testarridx.exe  testudt.exe testfuzzy.exe testsync.exe testconc.exe testiref.exe testtrav.exe testidx.exe bugdb.exe clidb.exe clitest.exe clitest2.exe testrect.exe localclitest.exe testalter.exe testraw.exe testharr.exe testspat.exe testtimeseries.exe testwcs.exe testtl.exe
+EXAMPLES = guess.exe guess2.exe guess_std.exe testdb.exe testleak.exe testfrag.exe testjoin.exe testddl.exe testddl_e.exe testperf.exe testpar.exe testindex.exe testarridx.exe  testudt.exe testfuzzy.exe testsync.exe testMultiIndex.exe testconc.exe testiref.exe testtrav.exe testidx.exe bugdb.exe clidb.exe clitest.exe clitest2.exe testrect.exe localclitest.exe testalter.exe testraw.exe testharr.exe testspat.exe testtimeseries.exe testwcs.exe testtl.exe
 
 CC = cl
 
@@ -360,10 +360,16 @@ testtl.obj: examples/testtl.cpp $(INCS)
 testtl.exe: testtl.obj $(FASTDB_LIB)
 	$(LD) $(LDFLAGS) testtl.obj $(FASTDB_LIB) $(STDLIBS)
 
-testsync.obj: examples/testsync.cpp $(INCS)
-	$(CC) $(CFLAGS) -P examples/testsync.cpp 
-	$(CC) $(CFLAGS) examples/testsync.cpp 
-
+testMultiIndex.obj: examples/testMultiIndex.cpp $(INCS)
+	$(CC) $(CFLAGS) -P examples/testMultiIndex.cpp 
+	$(CC) $(CFLAGS) examples/testMultiIndex.cpp 
+	
+testMultiIndex.exe: testMultiIndex.obj $(FASTDB_LIB)
+	$(LD) $(LDFLAGS) testMultiIndex.obj $(FASTDB_LIB) $(STDLIBS)
+	
+testsync.obj: examples/testsync.cpp $(INCS)	
+	$(CC)  $(CFLAGS) examples/testsync.cpp
+	
 testsync.exe: testsync.obj $(FASTDB_LIB)
 	$(LD) $(LDFLAGS) testsync.obj $(FASTDB_LIB) $(STDLIBS)
 
